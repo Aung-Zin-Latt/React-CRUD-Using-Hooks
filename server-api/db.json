@@ -1,0 +1,44 @@
+{
+  "contacts": [
+    {
+      "id": "3f591898-e680-4a6e-b6a6-2b86ecf32f79",
+      "name": "Uma Bassn 1",
+      "email": "muwatohif@mailinator.com"
+    },
+    {
+      "id": "87e57bbc-0fde-41f8-bd9c-e7f22edacd39",
+      "name": "Oliver Ramsey",
+      "email": "razazod@mailinator.com"
+    },
+    {
+      "id": "3d919ebf-8cb0-44d4-8834-bec927d9fbd2",
+      "name": "Wanda Poole",
+      "email": "qorurore@mailinator.com"
+    },
+    {
+      "id": "d74266f9-31e9-4c04-92a4-5ae8037c9a94",
+      "name": "Colette Conrad",
+      "email": "cyzycu@mailinator.com"
+    },
+    {
+      "id": "1a0089fb-9192-4d09-a058-141c52642ddf",
+      "name": "Micah Bryan",
+      "email": "pizydi@mailinator.com"
+    },
+    {
+      "id": "e4607328-f602-4581-802f-801bcf2dd5f5",
+      "name": "Lillian Hawkins",
+      "email": "lillianhawkins@gmail.com"
+    },
+    {
+      "id": "0e6b1d9c-d1eb-4775-9f8f-416eca641207",
+      "name": "Aung Zin Lat",
+      "email": "aungzinlatt007@gmail.com"
+    },
+    {
+      "id": "79553cab-4fdf-4370-8e26-d8baec1265e4",
+      "name": "Amit",
+      "email": "amit@gmail.com"
+    }
+  ]
+}
