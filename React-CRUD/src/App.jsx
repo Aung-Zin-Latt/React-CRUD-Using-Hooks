@@ -29,17 +29,13 @@ const App = () => {
   //   const storedContacts = localStorage.getItem(LOCAL_STORAGE_KEY);
   //   return storedContacts ? JSON.parse(storedContacts) : [];
   // });
-  const [contacts, setContacts] = useState([])
-  // const [contactId, setContactId] = useState(null)
+  const [ contacts, setContacts ] = useState([]);
+  const [ searchTerm, setSearchTerm ] = useState("");
+  const [ searchResults, setSearchResult ] = useState([]);
+  
 
   const addContactHandler = async (contact) => {
     // console.log(contact);
-    // try {
-    //   const response = await api.post("/contacts", { id: uuid(), ...contact });
-    //   setContacts((prevContacts) => [...prevContacts, response.data]);
-    // } catch (error) {
-    //   console.error('Error adding contact:', error);
-    // }
     try {
       const response = await api.post("/contacts", { id: uuid(), ...contact });
       console.log(response);
@@ -76,6 +72,27 @@ const App = () => {
     setContacts(newContactList)
   }
 
+  // For searching Contacts
+  const searchHandler = (searchTerm) => { // 3
+    // console.log("Search", searchTerm)
+
+    // we will set searchTerm value in our searchTerm useState
+    setSearchTerm(searchTerm) // 9
+    if (searchTerm !== "") {
+      const newContactList = contacts.filter((contact) => {
+        return Object.values(contact)
+          .join(" ")
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()); // .join() will convert object to string
+      });
+      setSearchResult(newContactList);
+    }
+    else {
+      setSearchResult(contacts);
+      // and then we need to check the condition in <ContactLists /> component
+    }
+  }
+
 
   useEffect(() => {
     // const storedContacts = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -103,7 +120,12 @@ const App = () => {
             <Route
               path="/"
               exact 
-              element={<ContactList contacts={contacts} getContactId={removeContactHandler} />} 
+              element={<ContactList
+                          contacts={searchTerm.length < 1 ? contacts : searchResults} 
+                          getContactId={removeContactHandler}
+                          term={searchTerm} // 1
+                          searchKeyword={searchHandler} // 2
+                      />} 
               // render={(props) => (
               //   <ContactList 
               //     {...props}

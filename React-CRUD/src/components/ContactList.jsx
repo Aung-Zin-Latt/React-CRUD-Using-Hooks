@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import ContactCard from './ContactCard'
 import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
@@ -14,6 +14,7 @@ const ContactList = (props) => {
     // for delete confirmation dialog box
     const [showConfirmModal, setShowConfirmModal] = useState(false)
     const [contactToDelete, setContactToDelete] = useState(null)
+    const inputElement = useRef("") // 6
 
     const deleteContactHandler = (id) => {
         // if (window.confirm('Are you sure, you want to delete this contact?')) {
@@ -45,13 +46,31 @@ const ContactList = (props) => {
         )
     })
 
+    // For Search
+    const getSearchTerm = () => { // 5
+        props.searchKeyword(inputElement.current.value) // 8 // we can also use "inputElement.current.value"
+    }
+
     return (
-        <div className='main'>
+        <div className='main' style={{ marginTop: '250px' }}>
             <h2>Contact Lists</h2>
+            <div className="ui search" style={{ marginTop: '10px', marginBottom: '10px' }}>
+                <div className='ui icon input' style={{ width: '50%' }}>
+                    <input
+                        type='text'
+                        ref={inputElement} // 7
+                        placeholder='Search Contacts'
+                        className='prompt'
+                        value={props.term} // 4
+                        onChange={getSearchTerm} // 4
+                    />
+                    <i className='search icon'></i>
+                </div>
+            </div>
             <Link to="/add">
                 <button className="ui button blue right">Add Contact</button>
             </Link>
-            <div className='ui celled list'>{renderContactList}</div>
+            <div className='ui celled list'>{renderContactList.length > 0 ? (renderContactList) : (<span style={{ fontSize: '18px', color: 'gray' }}>No Contacts available!</span>)}</div>
 
             <Modal
                 isOpen={showConfirmModal}
