@@ -119,7 +119,7 @@ const App = () => {
           <Routes>
             <Route
               path="/"
-              exact 
+              exact
               element={<ContactList
                           contacts={searchTerm.length < 1 ? contacts : searchResults} 
                           getContactId={removeContactHandler}
